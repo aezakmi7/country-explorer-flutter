@@ -39,29 +39,33 @@ class _CountryPickerState extends State<CountryPicker> {
         title: const Text('Country Picker'),
       ),
       body: Center(
-        child: _isLoading
-            ? const CircularProgressIndicator()
-            : Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    _country!['name']['common'],
-                    style: const TextStyle(fontSize: 24),
-                  ),
-                  const SizedBox(height: 16),
-                  Image.network(
-                    _country!['flags']['png'],
-                    width: 100,
-                    height: 100,
-                  ),
-                  const SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: _fetchCountry,
-                    child: const Text('Next Country'),
-                  ),
-                ],
-              ),
+        child:
+            _isLoading ? const CircularProgressIndicator() : GenerateCountry(),
       ),
+    );
+  }
+
+  // ignore: non_constant_identifier_names
+  Column GenerateCountry() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          _country!['name']['common'],
+          style: const TextStyle(fontSize: 24),
+        ),
+        const SizedBox(height: 16),
+        Image.network(
+          _country!['flags']['png'],
+          width: 100,
+          height: 100,
+        ),
+        const SizedBox(height: 16),
+        ElevatedButton(
+          onPressed: _fetchCountry,
+          child: const Text('Next Country'),
+        ),
+      ],
     );
   }
 }
